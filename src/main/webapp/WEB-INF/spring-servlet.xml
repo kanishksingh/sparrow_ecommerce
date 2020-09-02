@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans  xmlns="http://www.springframework.org/schema/beans" 
+        xmlns:context="http://www.springframework.org/schema/context"
+        xmlns:mvc="http://www.springframework.org/schema/mvc"
+        xmlns:tx="http://www.springframework.org/schema/tx"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:security="http://www.springframework.org/schema/security"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/tx
+http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+http://www.springframework.org/schema/mvc
+http://www.springframework.org/schema/mvc/spring-mvc.xsd"> 
+
+    <context:component-scan base-package="com.kanishk.ecommerce.Controller"></context:component-scan>
+   <bean id="tilesViewResolver"
+    class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+    <property name="order" value="1" />
+</bean>
+
+<bean id="tilesConfigurer"
+    class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+    <property name="definitions">
+        <list>
+            <value>/WEB-INF/tiles/tiles-definitions.xml</value>
+        </list>
+    </property>
+</bean>
+<!--<bean id="viewResolver"
+    class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="prefix" value="/WEB-INF/jsp/" />
+    <property name="suffix" value=".jsp" />
+    <property name="order" value="2" />
+</bean> -->
+       <!-- Mail Sending properties -->
+<!--    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+        <property name="host" value="smtp.gmail.com" />
+        <property name="port" value="587" />
+        <property name="username" value="" />
+        <property name="password" value="" />
+        <property name="javaMailProperties">
+            <props>
+                <prop key="mail.transport.protocol">smtp</prop>
+                <prop key="mail.smtp.auth">true</prop>
+                <prop key="mail.smtp.starttls.enable">true</prop>
+            </props>
+        </property>
+    </bean>-->
+    
+    <bean id="multipartResolver"
+        class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- max upload size in bytes -->
+        <property name="maxUploadSize" value="20971520" /> <!-- 20MB -->
+        <!-- max size of file in memory (in bytes) -->
+        <property name="maxInMemorySize" value="1048576" /> <!-- 1MB -->
+    </bean>
+    <bean
+        class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="java.lang.Exception">Error</prop>
+            </props>
+        </property>
+    </bean> 
+    
+    <bean id="ds" class="org.springframework.jdbc.datasource.DriverManagerDataSource">  
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+        <property name="url" value="jdbc:mysql://localhost:3306/hotelmanagementsystem_kot"></property>
+        <property name="username" value="root"></property>  
+        <property name="password" value="papaji"></property>  
+        
+    </bean>  
+
+    <bean id="jt" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="ds"></property>
+    </bean>
+
+
+    <bean id="userDAo" class="com.kanishk.ecommerce.Dao.UserDao">
+        <property name="template" ref="jt"></property>
+    </bean>
+     <bean id="menuDAo" class="com.kanishk.ecommerce.Dao.MenuDao">
+        <property name="template" ref="jt"></property>
+    </bean>
+        <bean id="productDAo" class="com.kanishk.ecommerce.Dao.ProductDao">
+        <property name="template" ref="jt"></property>
+    </bean>
+
+    <mvc:interceptors>
+        <bean id="webContentInterceptor" class="org.springframework.web.servlet.mvc.WebContentInterceptor">
+            <property name="cacheSeconds" value="0"/>
+            <property name="useExpiresHeader" value="false"/>
+            <property name="useCacheControlHeader" value="true"/>
+            <property name="useCacheControlNoStore" value="true"/>
+        </bean>     
+    </mvc:interceptors>
+        
+    <mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926"/> 
+    <mvc:resources mapping="/DashboardResources/**" location="/DashboardResources/" cache-period="31556926"/> 
+    <mvc:annotation-driven />
+    
+</beans>

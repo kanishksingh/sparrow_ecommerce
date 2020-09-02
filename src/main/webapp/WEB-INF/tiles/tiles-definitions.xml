@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">  
+<tiles-definitions>  
+    <definition name="base.definition" template="/WEB-INF/jsp/layout.jsp">  
+        <put-attribute name="title" value="" />  
+        <put-attribute name="header" value="/WEB-INF/jsp/header.jsp" />  
+        <put-attribute name="menu" value="/WEB-INF/jsp/menu.jsp" />  
+        <put-attribute name="body" value="" />  
+        <put-attribute name="footer" value="/WEB-INF/jsp/footer.jsp" />  
+    </definition>
+
+    <!--Dashboard Section -->
+         <!--Product Module Section -->
+         <definition name="NewSingleProduct" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Product/SingleProduct.jsp" />  
+    </definition>
+      <definition name="NewProduct" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Product/NewProduct.jsp" />  
+    </definition>
+     <definition name="ProductImage" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Product/ProductImage.jsp" />  
+    </definition>
+      <definition name="ProductAjaxRepo" extends="login.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Product/Ajax/ProductAjaxRepo.jsp" />  
+    </definition>
+     <!--Product Section Configeration End,..-->   
+
+     <!--Menu,Submenu,SubSubMenu Module Section -->
+  <definition name="NewMenu" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Menu/NewMenu.jsp" />  
+    </definition>
+  <definition name="EditMenu" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Menu/EditMenu.jsp" />  
+    </definition>     
+     <definition name="NewSubMenu" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Menu/NewSubMenu.jsp" />  
+    </definition> 
+        <definition name="EditSubMenu" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Menu/EditSubMenu.jsp" />  
+    </definition>
+     <definition name="NewSubSubMenu" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Menu/NewSubSubMenu.jsp" />  
+    </definition>
+     <definition name="EditSubSubMenu" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Menu/EditSubSubMenu.jsp" />  
+    </definition>
+     <!--Menu,Submenu,SubSubMenu Section Configeration End,..-->   
+     
+     <!--User Module Section -->
+  <definition name="NewUser" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Users/NewUsers.jsp" />  
+    </definition>
+  <definition name="EditUser" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Users/UpdateUser.jsp" />  
+    </definition>     
+      <definition name="rights" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/Users/Authentication.jsp" />  
+    </definition> 
+     <!--User Section Configeration End,..-->   
+    <definition name="loginsuccess" extends="signinbase.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/home.jsp" />  
+    </definition>  
+    <definition name="login" extends="login.definition">  
+        <put-attribute name="dbody" value="/WEB-INF/jsp/Dashboard/login.jsp" />  
+    </definition> 
+    <!--Dashboard Section Configeration End,..-->   
+    <definition name="login.definition" template="/WEB-INF/jsp/Dashboard/layout-login.jsp">  
+        <put-attribute name="dtitle" value="Welcome to HMS" />  
+        <put-attribute name="dbody" value="" />  
+    </definition> 
+    <definition name="signinbase.definition" template="/WEB-INF/jsp/Dashboard/layout-welcome.jsp">  
+        <put-attribute name="dtitle" value="" />  
+        <put-attribute name="dmenu" value="/WEB-INF/jsp/Dashboard/menu.jsp" /> 
+        <put-attribute name="dbody" value="" />  
+        <put-attribute name="dfooter" value="/WEB-INF/jsp/Dashboard/footer.jsp" />  
+    </definition>
+    <!--Front News Section Start..-->    
+
+    <definition name="newshome" extends="base.definition">  
+        <put-attribute name="title" value="Welcome to Ecommerce" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/Ecommerce/index.jsp" />  
+    </definition> 
+     <definition name="detailnews" extends="base.definition">  
+        <put-attribute name="title" value="Welcome to Ecommerce" />  
+        <put-attribute name="body" value="/WEB-INF/jsp/Ecommerce/newsdetail.jsp" />  
+    </definition>  
+    
+    <!--Front News Section End..-->    
+
+</tiles-definitions>  
